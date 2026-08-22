@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: logiai-api
+    runtime: docker
+    plan: free
+    healthCheckPath: /health
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase: {name: logiai-db, property: connectionString}
+      - key: LLM_PROVIDER
+        value: stub
+databases:
+  - name: logiai-db
+    plan: free
+
+
